@@ -1,0 +1,66 @@
+[package]
+name = "play_bevy"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# Enable a small amount of optimization in debug mode
+[profile.dev]
+opt-level = 1
+
+# Enable high optimizations for dependencies (incl. Bevy), but not for our code:
+[profile.dev.package."*"]
+opt-level = 3
+
+# [lib]
+# crate-type = ["cdylib", "rlib"]
+
+[dependencies.bevy]
+path = "../../repos/bevy/"
+default-features = false
+features = [
+    # "dynamic_linking",
+    #
+    "animation",
+    "bevy_asset",
+    "bevy_audio",
+    "bevy_gilrs",
+    "bevy_scene",
+    "bevy_winit",
+    "bevy_core_pipeline",
+    "bevy_pbr",
+    "bevy_gltf",
+    "bevy_render",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_ui",
+    "png",
+    "hdr",
+    "ktx2",
+    "zstd",
+    "vorbis",
+    "x11",
+    "filesystem_watcher",
+    "bevy_gizmos",
+    "android_shared_stdcxx",
+    "tonemapping_luts",
+    "default_font",
+    # "webgl2",
+]
+
+[profile.release]
+opt-level = 'z'   # Optimize for size
+lto = true        # Enable link-time optimization
+codegen-units = 1 # Reduce number of codegen units to increase optimizations
+
+# Native
+# cargo b --release
+
+# WASM
+# cargo b --release --target wasm32-unknown-unknown 
+# wasm-bindgen --target web target/wasm32-unknown-unknown/release/play_bevy.wasm --out-dir wasm --out-name out
+# wasm-opt -Oz --output optimized.wasm wasm/out_bg.wasm
+# mv optimized.wasm wasm/out_bg.wasm --force
+# basic-http-server .
+
