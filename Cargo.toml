@@ -57,10 +57,14 @@ codegen-units = 1 # Reduce number of codegen units to increase optimizations
 # Native
 # cargo b --release
 
-# WASM
+# Wasm Dev
+# cargo b --target wasm32-unknown-unknown 
+# wasm-bindgen --target web target/wasm32-unknown-unknown/debug/play_bevy.wasm --out-dir wasm --out-name out
+# basic-http-server .
+
+# Wasm Release
 # cargo b --release --target wasm32-unknown-unknown 
 # wasm-bindgen --target web target/wasm32-unknown-unknown/release/play_bevy.wasm --out-dir wasm --out-name out
 # wasm-opt -Oz --output optimized.wasm wasm/out_bg.wasm
 # mv optimized.wasm wasm/out_bg.wasm --force
 # basic-http-server .
-
