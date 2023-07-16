@@ -13,15 +13,18 @@ opt-level = 1
 [profile.dev.package."*"]
 opt-level = 3
 
-# [lib]
-# crate-type = ["cdylib", "rlib"]
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# color-eyre = "0.6.2"
+# rand = "0.8.5"
 
 [dependencies.bevy]
 path = "../../repos/bevy/"
 default-features = false
 features = [
-    # "dynamic_linking",
-    #
+    # "dynamic_linking"
     "animation",
     "bevy_asset",
     "bevy_audio",
@@ -35,7 +38,8 @@ features = [
     "bevy_sprite",
     "bevy_text",
     "bevy_ui",
-    "png",
+    # "multi-threaded",
+    "png", 
     "hdr",
     "ktx2",
     "zstd",
@@ -46,8 +50,11 @@ features = [
     "android_shared_stdcxx",
     "tonemapping_luts",
     "default_font",
-    # "webgl2",
+    #   "webgl2",
 ]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2.87"
 
 [profile.release]
 opt-level = 'z'   # Optimize for size
@@ -57,14 +64,22 @@ codegen-units = 1 # Reduce number of codegen units to increase optimizations
 # Native
 # cargo b --release
 
-# Wasm Dev
-# cargo b --target wasm32-unknown-unknown 
-# wasm-bindgen --target web target/wasm32-unknown-unknown/debug/play_bevy.wasm --out-dir wasm --out-name out
+# WASM Dev 
+# wasm-pack build --target web 
 # basic-http-server .
 
-# Wasm Release
+# WASM Release
+# wasm-pack build --target web --release
+# basic-http-server .
+
+# Wasm Dev - wasm-bindgen
+# cargo b --target wasm32-unknown-unknown 
+# wasm-bindgen --target web target/wasm32-unknown-unknown/debug/play_bevy.wasm --out-dir pkg --out-name play_bevy
+# basic-http-server .
+
+# Wasm Release - wasm-bingen
 # cargo b --release --target wasm32-unknown-unknown 
-# wasm-bindgen --target web target/wasm32-unknown-unknown/release/play_bevy.wasm --out-dir wasm --out-name out
-# wasm-opt -Oz --output optimized.wasm wasm/out_bg.wasm
-# mv optimized.wasm wasm/out_bg.wasm --force
+# wasm-bindgen --target web target/wasm32-unknown-unknown/release/play_bevy.wasm --out-dir pkg --out-name play_bevy
+# wasm-opt -Oz --output optimized.wasm pkg/play_bevy_bg.wasm
+# mv optimized.wasm pkg/play_bevy_bg.wasm --force
 # basic-http-server .
