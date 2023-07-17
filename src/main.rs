@@ -1,3 +1,5 @@
+use bevy::prelude::*;
+
 fn main() {
-    play_bevy::main();
+    App::new().add_plugins(DefaultPlugins).run();
 }
