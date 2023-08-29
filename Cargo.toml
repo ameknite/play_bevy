@@ -26,6 +26,8 @@ path = "../../repos/bevy/"
 default-features = false
 features = [
     # "dynamic_linking"
+    # "trace_tracy",
+    #
     "animation",
     "bevy_asset",
     "bevy_audio",
