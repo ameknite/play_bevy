@@ -4,7 +4,7 @@
 <body style="margin: 0px;">
     <script type="module">
         import './restart-audio-context.js'
-        import init from './pkg/play_bevy.js'
+        import init from './wasm/bevy_game.js'
         init().catch((error) => {
             if (!error.message.startsWith("Using exceptions for control flow, don't mind me. This isn't actually an error!")) {
                 throw error;
