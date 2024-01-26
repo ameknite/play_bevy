@@ -14,37 +14,11 @@ opt-level = 1
 opt-level = 3
 
 [dependencies]
-bevy = { path = "../../repos/bevy/", default-features = false, features = [
-    "animation",
-    "bevy_asset",
-    "bevy_audio",
-    "bevy_gilrs",
-    "bevy_scene",
-    "bevy_winit",
-    "bevy_core_pipeline",
-    "bevy_pbr",
-    "bevy_gltf",
-    "bevy_render",
-    "bevy_sprite",
-    "bevy_text",
-    "bevy_ui",
-    "multi-threaded",
-    "png",
-    "hdr",
-    "ktx2",
-    "zstd",
-    "vorbis",
-    "x11",
-    "bevy_gizmos",
-    "android_shared_stdcxx",
-    "tonemapping_luts",
-    "default_font",
-] }
+bevy = { path = "../../repos/bevy/" }
 
 [features]
-webgl2 = ["bevy/webgl2"]
-default = ["bevy/webgl2"]
-
+dev = ["bevy/dynamic_linking"]
+webgpu = ["bevy/webgpu"]
 
 # Native
 # cargo b --release
