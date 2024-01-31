@@ -33,3 +33,11 @@ webgpu = ["bevy/webgpu"]
 # wasm-bindgen --no-typescript --out-name bevy_game --out-dir wasm --target web target/wasm32-unknown-unknown/release/play_bevy.wasm
 # wasm-opt -Oz --output wasm/bevy_game_bg.wasm wasm/bevy_game_bg.wasm
 # basic-http-server wasm
+
+# [profile.release]
+# opt-level = 3
+# # opt-level = "z"
+# lto = "fat"
+# codegen-units = 1
+# panic = "abort"
+# strip = "symbols"
