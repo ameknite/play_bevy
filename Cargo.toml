@@ -32,7 +32,7 @@ webgpu = ["bevy/webgpu"]
 # cargo b --release --target wasm32-unknown-unknown --features webgpu
 # wasm-bindgen --no-typescript --out-name bevy_game --out-dir wasm --target web target/wasm32-unknown-unknown/release/play_bevy.wasm
 # wasm-opt -Oz --output wasm/bevy_game_bg.wasm wasm/bevy_game_bg.wasm
-# basic-http-server wasm
+# basic-http-server .
 
 [profile.release]
 opt-level = 3
